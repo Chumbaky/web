@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad 1: Conexiones Trifásicas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="menu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('unidad1') }}">Unidad 1</a></li>
+            <li><a href="{{ url_for('unidad2') }}">Unidad 2</a></li>
+            <li><a href="{{ url_for('unidad3') }}">Unidad 3</a></li>
+        </ul>
+    </div>
+
+    <div class="contenido">
+        <h1>Unidad 1: Conexión Y-Y</h1>
+        <p>La conexión Y-Y es una de las configuraciones más comunes en sistemas eléctricos trifásicos...</p>
+        <img src="{{ url_for('static', filename='img/y-y.png') }}" alt="Conexión Y-Y">
+
+        <!-- Incluir calculadora Y-Y -->
+        <iframe src="{{ url_for('static', filename='calculadora_y_y.html') }}" width="100%" height="400px"></iframe>
+
+        <h1>Conexión Delta-Delta</h1>
+        <p>En la conexión Delta-Delta, tanto el generador como la carga están conectados en forma de triángulo...</p>
+        <img src="{{ url_for('static', filename='img/delta-delta.png') }}" alt="Conexión Delta-Delta">
+
+        <!-- Incluir calculadora Delta-Delta -->
+        <iframe src="{{ url_for('static', filename='calculadora_delta_delta.html') }}" width="100%" height="400px"></iframe>
+
+        <h1>Conexión Delta-Y</h1>
+        <p>La conexión Delta-Y combina las dos configuraciones...</p>
+        <img src="{{ url_for('static', filename='img/delta-y.png') }}" alt="Conexión Delta-Y">
+
+        <!-- Incluir calculadora Delta-Y -->
+        <iframe src="{{ url_for('static', filename='calculadora_delta_y.html') }}" width="100%" height="400px"></iframe>
+    </div>
+
+</body>
+</html>

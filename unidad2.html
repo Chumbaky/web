@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad 1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .informe-cuerpo ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body class="unidad">
+    <nav>
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('unidad1') }}">Unidad 1</a>
+        <a href="{{ url_for('unidad2') }}">Unidad 2</a>
+        <a href="{{ url_for('unidad3') }}">Unidad 3</a>
+    </nav>
+     <!-- Contenido principal -->
+     <main>
+        <h1> Circuitos de Primer y Segundo Orden</h1>
+
+        <h2> Introducción a los Circuitos de Primer Orden</h2>
+        <p>Los circuitos de primer orden están modelados por ecuaciones diferenciales de primer orden. Estos circuitos constan de los siguientes componentes:</p>
+        <ul>
+            <li>Un solo elemento que almacena energía (bobina o capacitor). Si hay varios del mismo tipo, se reducen a un solo equivalente.</li>
+            <li>Fuentes de poder que pueden conectarse o desconectarse en un instante específico de tiempo.</li>
+            <li>Elementos disipadores de energía.</li>
+            <li>Interruptores que se activan (abren, cierran o conmutan) en momentos específicos.</li>
+        </ul>
+        <img src="{{ url_for('static', filename='img/ta.png') }}" alt="Imagen ta">
+        <h2> Circuitos RC (Resistor-Capacitor)</h2>
+        <h3> Descripción General</h3>
+        <p>En un circuito RC, cuando una fuente de corriente continua se desconecta, la energía almacenada en el capacitor se libera hacia el resistor. Consideramos una configuración en serie de un resistor y un capacitor inicialmente cargado.</p>
+
+        <h3> Ecuación Diferencial del Circuito RC</h3>
+        <p>Aplicando la Ley de Corriente de Kirchhoff (LCK):</p>
+        <p>\[ i_c + i_r = 0 \]</p>
+        <p>Donde:</p>
+        <p>\[ i_c = C \frac{dv}{dt} \quad \text{y} \quad i_r = \frac{v}{R} \]</p>
+        <p>Entonces, tenemos:</p>
+        <p>\[ C \frac{dv}{dt} + \frac{v}{R} = 0 \quad \Rightarrow \quad \frac{dv}{dt} + \frac{v}{RC} = 0 \]</p>
+
+        <h3> Solución de la Ecuación Diferencial</h3>
+        <p>\[ \frac{dv}{v} = -\frac{dt}{RC} \]</p>
+        <p>Integrando ambos lados:</p>
+        <p>\[ \ln{v} = -\frac{t}{RC} + \ln{A} \]</p>
+        <p>\[ v(t) = A e^{-\frac{t}{RC}} \]</p>
+        <p>La constante de tiempo \( \tau \) se define como:</p>
+        <p>\[ \tau = RC \]</p>
+
+        <h3> Respuesta General</h3>
+        <p>\[ v(t) = A e^{-\frac{t}{\tau}} + v(\infty) \]</p>
+        <p>Si \( v(\infty) = 0 \), la tensión se disipa completamente.</p>
+        <p>Si \( v(\infty) \neq 0 \), hay una tensión residual debido a una fuente secundaria.</p>
+
+        <!-- Insertar imagen similar a la unidad 1 -->
+        <img src="{{ url_for('static', filename='img/s-rc-1.png') }}" alt="Imagen s-rc-1">
+
+        <h2> Circuitos RL (Resistor-Inductor)</h2>
+        <h3> Descripción General</h3>
+        <p>En un circuito RL en serie, la corriente a través del inductor no puede cambiar instantáneamente debido a las propiedades del inductor. Se analiza la corriente en el inductor cuando se desconecta la fuente.</p>
+
+        <h3> Ecuación Diferencial del Circuito RL</h3>
+        <p>Aplicando la Ley de Voltaje de Kirchhoff (LVK):</p>
+        <p>\[ V_L + v_R = 0 \]</p>
+        <p>Donde:</p>
+        <p>\[ V_L = L \frac{di}{dt} \quad \text{y} \quad v_R = iR \]</p>
+        <p>Entonces, tenemos:</p>
+        <p>\[ L \frac{di}{dt} + Ri = 0 \quad \Rightarrow \quad \frac{di}{dt} + \frac{R}{L} i = 0 \]</p>
+
+        <h3> Solución de la Ecuación Diferencial</h3>
+        <p>\[ \frac{di}{i} = -\frac{R}{L} dt \]</p>
+        <p>Integrando:</p>
+        <p>\[ \ln{i} = -\frac{Rt}{L} + \ln{A} \]</p>
+        <p>\[ i(t) = A e^{-\frac{Rt}{L}} \]</p>
+        <p>La constante de tiempo \( \tau \) se define como:</p>
+        <p>\[ \tau = \frac{L}{R} \]</p>
+
+        <h3> Respuesta General</h3>
+        <p>\[ i(t) = A e^{-\frac{t}{\tau}} + i(\infty) \]</p>
+        <p>Si \( i(\infty) = 0 \), la corriente se disipa completamente.</p>
+        <p>Si \( i(\infty) \neq 0 \), hay una corriente residual.</p>
+
+        <!-- Insertar imagen similar a la unidad 1 -->
+        <img src="{{ url_for('static', filename='img/s-rl-1.png') }}" alt="Imagen s-rl-1">
+
+
+        <h2> Conmutación Secuencial en Circuitos</h2>
+        <p>En circuitos con conmutación secuencial, varios interruptores se activan en diferentes momentos, afectando cómo cambian las tensiones y corrientes en el circuito. Las ecuaciones relevantes se derivan usando las leyes de Kirchhoff, considerando que la corriente en el inductor y la tensión en el capacitor no cambian instantáneamente. Las fórmulas específicas dependerán del circuito en cuestión (RC, RL, RLC) y de la configuración de los interruptores.</p>
+
+        <h2> Circuitos de Segundo Orden (RLC)</h2>
+        
+        <p>Los circuitos de segundo orden están caracterizados por una ecuación diferencial de segundo orden y contienen elementos R, L, y C. Estos circuitos modelan sistemas como la suspensión de un automóvil o el control de temperatura.</p>
+
+        <img src="{{ url_for('static', filename='img/s-orden.png') }}" alt="Imagen s-orden">
+        <p>Circuito RLC paralelo:</p>
+        <p>Aplicando LCK:</p>
+        <p>\[ \frac{v(t)}{R} + \frac{1}{L}\int_0^t v(x) dx + C\frac{dv(t)}{dt} = i_s(t) \]</p>
+        
+        <p>Circuito RLC serie:</p>
+        <p>Aplicando LVK:</p>
+        <p>\[ Ri + \frac{1}{C}\int_0^t i(x) dx + L\frac{di}{dt} = v_s(t) \]</p>
+
+        <!-- Insertar imagen similar a la unidad 1 -->
+        
+
+        <h3> Soluciones de Segundo Orden</h3>
+        <p>Dependiendo de los valores de los parámetros, se obtienen diferentes tipos de soluciones:</p>
+        <ul>
+            <li>Sobreamortiguado (\( \alpha > \omega_0 \)): Raíces reales y negativas.</li>
+            <li>\[ x_n = A e^{s_1 t} + B e^{s_2 t} \]</li>
+            <li>Subamortiguado (\( \alpha < \omega_0 \)): Raíces complejas conjugadas.</li>
+            <li>\[ x_n = e^{\alpha t} (A \cos(\omega_0 t) + B \sin(\omega_0 t)) \]</li>
+            <li>Críticamente amortiguado (\( \alpha = \omega_0 \)): Raíces repetidas.</li>
+            <li>\[ x_n = (A + Bt)e^{-\alpha t} \]</li>
+        </ul>
+
+        <h2> Análisis usando Transformada de Laplace</h2>
+        <p>La transformada de Laplace es una herramienta poderosa para resolver ecuaciones diferenciales en el análisis de circuitos.</p>
+        
+        <h3> Definición de la Transformada de Laplace</h3>
+        <p>
+            \[
+            L[f(t)] = F(s) = \int_0^\infty f(t) e^{-st} dt
+            \]
+        </p>
+        <p>Donde:</p>
+        <p>
+            \[
+            s = \sigma + j\omega
+            \]
+        </p>
+        
+        <h3> Fracciones Parciales y Polos</h3>
+        <ul>
+            <li><strong>Polos Simples:</strong></li>
+        </ul>
+        <p>
+            \[
+            F(s) = \frac{K_1}{s + p_1} + \frac{K_2}{s + p_2} + \dots + \frac{K_n}{s + p_n}
+            \]
+        </p>
+        <p>Aquí, cada \( p_i \) representa un polo simple de la función de transferencia \( F(s) \).</p>
+        
+        <ul>
+            <li><strong>Polos Complejos Conjugados:</strong></li>
+        </ul>
+        <p>
+            \[
+            F(s) = \frac{K_1}{s + (\alpha - j\beta)} + \frac{K_2}{s + (\alpha + j\beta)}
+            \]
+        </p>
+        
+        <ul>
+            <li><strong>Polos Repetidos:</strong></li>
+        </ul>
+        <p>
+            \[
+            F(s) = \frac{K_1}{s + p} + \frac{K_2}{(s + p)^2} + \dots + \frac{K_r}{(s + p)^r}
+            \]
+        </p>
+        <p>Donde \( p \) es un polo repetido \( r \) veces.</p>
+        
+        <h3> Polos y Ceros de una Función de Transferencia</h3>
+        <p>Para una función de transferencia general:</p>
+        <p>
+            \[
+            F(s) = \frac{b_n s^n + b_{n-1} s^{n-1} + \dots + b_1 s + b_0}{a_m s^m + a_{m-1} s^{m-1} + \dots + a_1 s + a_0}
+            \]
+        </p>
+        <ul>
+            <li><strong>Polos:</strong> Son las raíces del denominador \( Q(s) = 0 \), es decir, los valores de \( s \) que hacen que la función de transferencia sea infinita. Indican las frecuencias naturales del sistema que pueden generar respuestas inestables o resonantes.</li>
+        </ul>
+        <p>
+            \[
+            Q(s) = a_m s^m + a_{m-1} s^{m-1} + \dots + a_1 s + a_0 = 0
+            \]
+        </p>
+        
+        <ul>
+            <li><strong>Ceros:</strong> Son las raíces del numerador \( P(s) = 0 \), es decir, los valores de \( s \) que hacen que la salida del sistema sea cero. Indican las frecuencias en las que la salida del sistema se anula.</li>
+        </ul>
+        <p>
+            \[
+            P(s) = b_n s^n + b_{n-1} s^{n-1} + \dots + b_1 s + b_0 = 0
+            \]
+        </p>
+        
+        <h3> Diagrama de Polos y Ceros</h3>
+        <ul>
+            <li><strong>Polos:</strong> Se representan en el plano \( s \) como 'X' en las ubicaciones \( s = p_i \). Estos son los puntos donde la función de transferencia se vuelve infinita.</li>
+            <li><strong>Ceros:</strong> Se representan en el plano \( s \) como 'O' en las ubicaciones \( s = z_i \). Estos son los puntos donde la función de transferencia se vuelve cero.</li>
+        </ul>
+        
+        <h3> Diagrama de Bode</h3>
+        <p>El diagrama de Bode representa la respuesta en frecuencia de un sistema. Muestra cómo varían la magnitud y la fase de la función de transferencia \( F(s) \) con respecto a la frecuencia angular \( \omega \). Es particularmente útil para determinar la estabilidad y el margen de ganancia de un sistema de control.</p>
+
+        
+    </main>
+
+    <!-- Calculadora específica para Unidad 2 (a insertar) -->
+   
+</body>
+</html>
